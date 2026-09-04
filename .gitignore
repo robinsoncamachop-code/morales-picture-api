@@ -5,4 +5,5 @@ data/*.tmp
 .env
 *.log
 .DS_Store
-
+# Respaldo portable del historial; no se añade dentro de su propio historial.
+HISTORIAL_GIT.bundle
