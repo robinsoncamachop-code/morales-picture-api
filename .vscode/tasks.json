@@ -1,0 +1,18 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "API: iniciar",
+      "type": "npm",
+      "script": "start",
+      "problemMatcher": []
+    },
+    {
+      "label": "API: probar",
+      "type": "npm",
+      "script": "test",
+      "problemMatcher": []
+    }
+  ]
+}
+

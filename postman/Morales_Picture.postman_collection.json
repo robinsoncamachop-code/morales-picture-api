@@ -1,0 +1,248 @@
+{
+  "info": {
+    "name": "Morales Picture — AA5 EV01",
+    "description": "Registro y login. Ejecutar en orden; los valores son ficticios de demostración.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000"
+    },
+    {
+      "key": "usuario",
+      "value": "demo_morales"
+    },
+    {
+      "key": "contrasena",
+      "value": "ClaveDemo2026!"
+    }
+  ],
+  "item": [
+    {
+      "name": "01 - Registrar usuario",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"usuario\": \"{{usuario}}\",\n  \"contrasena\": \"{{contrasena}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{base_url}}/api/registro",
+        "description": "Ejecute en el orden indicado. Verifique el código HTTP y la respuesta JSON."
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Un usuario nuevo permite repetir la colección sin borrar datos.",
+              "pm.collectionVariables.set('usuario', 'demo_' + Date.now());"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Comprueba automáticamente el código HTTP esperado.",
+              "pm.test('HTTP 201', function () { pm.response.to.have.status(201); });",
+              "pm.test('Mensaje esperado', function () { pm.expect(pm.response.json().mensaje).to.eql(\"Usuario registrado correctamente\"); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "02 - Login correcto",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"usuario\": \"{{usuario}}\",\n  \"contrasena\": \"{{contrasena}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{base_url}}/api/login",
+        "description": "Ejecute en el orden indicado. Verifique el código HTTP y la respuesta JSON."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Comprueba automáticamente el código HTTP esperado.",
+              "pm.test('HTTP 200', function () { pm.response.to.have.status(200); });",
+              "pm.test('Mensaje esperado', function () { pm.expect(pm.response.json().mensaje).to.eql(\"Autenticación satisfactoria\"); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "03 - Contraseña incorrecta",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"usuario\": \"{{usuario}}\",\n  \"contrasena\": \"ClaveEquivocada!\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{base_url}}/api/login",
+        "description": "Ejecute en el orden indicado. Verifique el código HTTP y la respuesta JSON."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Comprueba automáticamente el código HTTP esperado.",
+              "pm.test('HTTP 401', function () { pm.response.to.have.status(401); });",
+              "pm.test('Mensaje esperado', function () { pm.expect(pm.response.json().mensaje).to.eql(\"Error en la autenticación\"); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "04 - Usuario inexistente",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"usuario\": \"{{usuario}}_no\",\n  \"contrasena\": \"{{contrasena}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{base_url}}/api/login",
+        "description": "Ejecute en el orden indicado. Verifique el código HTTP y la respuesta JSON."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Comprueba automáticamente el código HTTP esperado.",
+              "pm.test('HTTP 401', function () { pm.response.to.have.status(401); });",
+              "pm.test('Mensaje esperado', function () { pm.expect(pm.response.json().mensaje).to.eql(\"Error en la autenticación\"); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "05 - Registro duplicado",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"usuario\": \"{{usuario}}\",\n  \"contrasena\": \"{{contrasena}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{base_url}}/api/registro",
+        "description": "Ejecute en el orden indicado. Verifique el código HTTP y la respuesta JSON."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Comprueba automáticamente el código HTTP esperado.",
+              "pm.test('HTTP 409', function () { pm.response.to.have.status(409); });",
+              "pm.test('Mensaje esperado', function () { pm.expect(pm.response.json().mensaje).to.eql(\"El usuario ya se encuentra registrado\"); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "06 - Campos faltantes",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"usuario\": \"{{usuario}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{base_url}}/api/registro",
+        "description": "Ejecute en el orden indicado. Verifique el código HTTP y la respuesta JSON."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Comprueba automáticamente el código HTTP esperado.",
+              "pm.test('HTTP 400', function () { pm.response.to.have.status(400); });"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

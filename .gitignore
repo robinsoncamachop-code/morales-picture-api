@@ -1,0 +1,8 @@
+# Dependencias instaladas y datos privados generados al ejecutar la API.
+node_modules/
+data/*.json
+data/*.tmp
+.env
+*.log
+.DS_Store
+

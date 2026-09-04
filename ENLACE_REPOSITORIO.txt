@@ -1,0 +1,9 @@
+Evidencia GA7-220501096-AA5-EV01 — Robinson Camacho
+Proyecto: API Morales Picture
+
+PENDIENTE: pegue aquí el enlace REAL del repositorio de GitHub de esta API.
+No utilice el enlace de la evidencia AA4_EV03 (front-end).
+
+El proyecto se entrega con un respaldo de historial Git llamado HISTORIAL_GIT.bundle.
+Consulte README.md para publicar el código y completar este requisito antes de entregar.
+

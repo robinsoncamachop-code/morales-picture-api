@@ -1,0 +1,20 @@
+{
+  "name": "morales-picture-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "API académica de registro e inicio de sesión — GA7-220501096-AA5-EV01",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test",
+    "check": "node --check src/app.js && node --check src/server.js && node --check src/services/password.js && node --check src/repositories/users.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
+
