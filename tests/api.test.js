@@ -17,7 +17,7 @@ test("Registro y autenticación de Morales Picture", async (t) => {
   const server = createApp(createUserRepository(file)).listen(0, "127.0.0.1");
   await once(server, "listening");
   const baseUrl = "http://127.0.0.1:" + server.address().port;
-  const credentials = { usuario: "robinson_prueba", contrasena: "ClaveDemo2026!" };
+  const credentials = { usuario: "robinson_prueba", contrasena: "robinson123" };
 
   // Cierra el servidor y elimina únicamente la carpeta temporal de esta prueba.
   t.after(async () => {
