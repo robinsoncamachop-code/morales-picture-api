@@ -1,4 +1,9 @@
-Evidencia GA7-220501096-AA5-EV01 — Robinson Camacho
+Evidencia GA7-220501096-AA5-EV01 —
+Robinson Camacho
+Manuel ramos
+Luz esperanza
+
+
 Proyecto: API Morales Picture
 
 PENDIENTE: https://github.com/robinsoncamachop-code/morales-picture-api.git
